@@ -1,0 +1,1 @@
+web: gunicorn listings_app.wsgi
