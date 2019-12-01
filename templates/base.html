@@ -40,7 +40,7 @@
                 <div class="center">
                     <i class="large material-icons" style="color: orange">camera</i>
                     <p>Filter your searches</p>
-                    <p class="light center">We built in functionality to filter based on pricing.</p>
+                    <p class="light center">Built in functionality to filter based on pricing.</p>
                 </div>
             </div>
 
@@ -49,13 +49,39 @@
                 <div class="center">
                     <i class="large material-icons" style="color: blue">chrome_reader_mode</i>
                     <p>A much sexier front-end to Craigslist</p>
-                    <p class="light center">We built this with ❤️</p>
+                    <p class="light center">Built this with ❤️</p>
                 </div>
             </div>
         </div>
 
+
+
         <form action="{% url 'new_search' %}" method="post">
             {% csrf_token %}
+            <p>
+                <label>
+                    <input name="location" type="radio" value="asheville" />
+                    <span>Asheville, NC</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input name="location" type="radio" value="charlotte" />
+                    <span>Charlotte, NC</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input name="location" type="radio" value="raleigh" checked />
+                    <span>Raleigh, NC</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input name="location" type="radio" value="winstonsalem" />
+                    <span>Winston Salem, NC</span>
+                </label>
+            </p>
             <input type="text" name="search" placeholder="search">
             <button class="btn waves-effect waves-light" type="submit" name="action">Submit
                 <i class="material-icons right">send</i>

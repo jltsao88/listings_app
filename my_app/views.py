@@ -4,7 +4,7 @@ from requests.compat import quote_plus
 import requests
 from . import models
 
-BASE_CRAIGSLIST_URL = 'https://raleigh.craigslist.org/search/?query={}'
+BASE_CRAIGSLIST_URL = 'https://{}.craigslist.org/search/?query={}'
 BASE_IMAGE_URL = 'https://images.craigslist.org/{}_300x300.jpg'
 
 # Create your views here.
@@ -12,9 +12,10 @@ def home(request):
     return render(request, template_name='base.html')
 
 def new_search(request):
+    location = request.POST.get('location')
     search = request.POST.get('search')
     models.Search.objects.create(search=search)
-    final_url = BASE_CRAIGSLIST_URL.format(quote_plus(search))
+    final_url = BASE_CRAIGSLIST_URL.format(location, quote_plus(search))
     response = requests.get(final_url)
     data = response.text
     soup = BeautifulSoup(data, features='html.parser')
@@ -39,7 +40,6 @@ def new_search(request):
             post_image_url = 'https://craigslist.org/images/peace.jpg'
         
         final_postings.append((post_title, post_url, post_price, post_image_url))
-
     
 
     stuff_for_frontend = {
